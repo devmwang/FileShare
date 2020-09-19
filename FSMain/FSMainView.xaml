@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="FSMain.FSMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:XAMLPresentation="http://schemas.microsoft.com/netfx/2009/xaml/presentation" 
+             xmlns:local="clr-namespace:FSMain"
+             mc:Ignorable="d" 
+             FontSize="12" FontFamily="Arial Rounded MT Bold"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <!-- Grid Column and Row Sizes -->
+        <!--Column Widths-->
+        <XAMLPresentation:GridLength x:Key="MainGridColumn0">10*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridColumn1">50*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridColumn2">40*</XAMLPresentation:GridLength>
+        
+        <!--Row Heights-->
+        <XAMLPresentation:GridLength x:Key="MainGridRow0">5*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridRow1">90*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridRow2">5*</XAMLPresentation:GridLength>
+    </UserControl.Resources>
+
+    <Grid>
+        <!-- Main Column Definitions -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource MainGridColumn0}" x:Name="LeftColumnWidth" />
+            <ColumnDefinition Width="{StaticResource MainGridColumn1}" x:Name="CenterColumnWidth" />
+            <ColumnDefinition Width="{StaticResource MainGridColumn2}" x:Name="RightColumnWidth" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.ColumnSpan="3" Fill="#0E0E10" />
+        
+        <!-- Left Column -->
+        <Grid Grid.Column="0" >
+            <!-- Main Row Definitions -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource MainGridRow0}" />
+                <RowDefinition Height="{StaticResource MainGridRow1}" />
+                <RowDefinition Height="{StaticResource MainGridRow2}" />
+            </Grid.RowDefinitions>
+
+            
+        </Grid>
+
+        <!-- Middle Column -->
+        <Grid Grid.Column="1" >
+            <!-- Main Row Definitions -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource MainGridRow0}" />
+                <RowDefinition Height="{StaticResource MainGridRow1}" />
+                <RowDefinition Height="{StaticResource MainGridRow2}" />
+            </Grid.RowDefinitions>
+
+            
+        </Grid>
+
+        <!-- Right Column -->
+        <Grid Grid.Column="2" >
+            <!-- Main Row Definitions -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource MainGridRow0}" />
+                <RowDefinition Height="{StaticResource MainGridRow1}" />
+                <RowDefinition Height="{StaticResource MainGridRow2}" />
+            </Grid.RowDefinitions>
+
+            
+        </Grid>
+    </Grid>
+</UserControl>

@@ -4,13 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileShare"
+        xmlns:FSMain="clr-namespace:FSMain;assembly=FSMain"
         mc:Ignorable="d"
         FontSize="12" FontFamily="Arial Rounded MT Bold"
         Title="File Share" Height="600" Width="1000">
 
     <!-- Application Views and ViewModels -->
     <Window.Resources>
-
+        <DataTemplate DataType="{x:Type FSMain:FSMainViewModel}">
+            <FSMain:FSMainView />
+        </DataTemplate>
     </Window.Resources>
 
     <Grid Background="#000000">

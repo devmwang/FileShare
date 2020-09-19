@@ -104,5 +104,15 @@
   <ItemGroup>
     <None Include="Resources\FileShare.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AssistanceClasses\AssistanceClasses.csproj">
+      <Project>{CB334B74-B952-4549-B80D-72B8F530BBFE}</Project>
+      <Name>AssistanceClasses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSMain\FSMain.csproj">
+      <Project>{0298042f-07ef-4731-b5ba-7ed18701c58c}</Project>
+      <Name>FSMain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
