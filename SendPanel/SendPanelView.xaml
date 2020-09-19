@@ -23,9 +23,9 @@
             <RowDefinition Height="0.25*" />
             <RowDefinition Height="16*" />
             <RowDefinition Height="0.25*" />
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="15*" />
-            <RowDefinition Height="21.25*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="11.25*" />
+            <RowDefinition Height="20*" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Column="1" Grid.Row="1">
@@ -116,28 +116,44 @@
 
         <Grid Grid.Column="1" Grid.Row="8" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*" />
-                <ColumnDefinition Width="60*" />
-                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="24*" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="51*" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="24*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="10*" />
-                <RowDefinition Height="80*" />
-                <RowDefinition Height="10*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="92*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
-            <Button Grid.Column="1" Grid.Row="1" Background="Transparent" BorderBrush="Transparent" >
+            <Button Grid.Column="2" Grid.Row="2" BorderBrush="Transparent" Background="Transparent" >
                 <Viewbox>
-                    <TextBlock>
-                        <Run Foreground="White">Send</Run>
-                    </TextBlock>
+                    <TextBox FontFamily="Helvetica" 
+                             FontWeight="Light"
+                             Text="Send"
+                             FontSize="25"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Bottom"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             HorizontalContentAlignment="Center"
+                             Opacity="1" />
                 </Viewbox>
             </Button>
 
-            <Border Grid.Column="1" Grid.Row="1" 
-                    BorderThickness="3,3,3,3" 
-                    CornerRadius="40,40,40,40" 
-                    BorderBrush="White" />
+            <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" />
+            <Rectangle Grid.Column="1" Grid.Row="2" Fill="White" />
+            <Rectangle Grid.Column="1" Grid.Row="3" Fill="White" />
+            <Rectangle Grid.Column="2" Grid.Row="1" Fill="White" />
+            <Rectangle Grid.Column="2" Grid.Row="3" Fill="White" />
+            <Rectangle Grid.Column="3" Grid.Row="1" Fill="White" />
+            <Rectangle Grid.Column="3" Grid.Row="2" Fill="White" />
+            <Rectangle Grid.Column="3" Grid.Row="3" Fill="White" />
         </Grid>
     </Grid>
 </UserControl>
