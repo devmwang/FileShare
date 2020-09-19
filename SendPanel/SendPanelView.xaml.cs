@@ -1,5 +1,4 @@
-﻿// Using System
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,24 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FSMain
+namespace SendPanel
 {
     /// <summary>
-    /// Interaction logic for FSMainView.xaml
+    /// Interaction logic for SendPanelView.xaml
     /// </summary>
-    public partial class FSMainView : UserControl
+    public partial class SendPanelView : UserControl
     {
-        public FSMainView()
+        public SendPanelView()
         {
             InitializeComponent();
-        }
-
-        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
-        {
-            tt_send.Visibility = Visibility.Visible;
-            tt_receive.Visibility = Visibility.Visible;
-            tt_settings.Visibility = Visibility.Visible;
-
         }
     }
 }

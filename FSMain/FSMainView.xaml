@@ -12,14 +12,34 @@
     <UserControl.Resources>
         <!-- Grid Column and Row Sizes -->
         <!--Column Widths-->
-        <XAMLPresentation:GridLength x:Key="MainGridColumn0">10*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridColumn0">4*</XAMLPresentation:GridLength>
         <XAMLPresentation:GridLength x:Key="MainGridColumn1">50*</XAMLPresentation:GridLength>
-        <XAMLPresentation:GridLength x:Key="MainGridColumn2">40*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridColumn2">46*</XAMLPresentation:GridLength>
         
-        <!--Row Heights-->
-        <XAMLPresentation:GridLength x:Key="MainGridRow0">5*</XAMLPresentation:GridLength>
-        <XAMLPresentation:GridLength x:Key="MainGridRow1">90*</XAMLPresentation:GridLength>
-        <XAMLPresentation:GridLength x:Key="MainGridRow2">5*</XAMLPresentation:GridLength>
+        <!-- Row Heights-->
+        <!--
+        <XAMLPresentation:GridLength x:Key="MainGridRow0">0*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridRow1">100*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridRow2">0*</XAMLPresentation:GridLength>
+        -->
+
+        <!-- Tooltip Style -->
+        <Style TargetType="ToolTip" x:Key="tt_style">
+            <Setter Property="Placement" Value="Right"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="Background" Value="#4A5668"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Fonts/Roboto-Light.ttf #Roboto"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="PlacementRectangle" Value="60,0,0,0"/>
+            <Setter Property="HorizontalOffset" Value="15"/>
+            <Setter Property="VerticalOffset" Value="6"/>
+            <Setter Property="HasDropShadow" Value="True"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -30,41 +50,56 @@
             <ColumnDefinition Width="{StaticResource MainGridColumn2}" x:Name="RightColumnWidth" />
         </Grid.ColumnDefinitions>
 
-        <Rectangle Grid.ColumnSpan="3" Fill="#0E0E10" />
         
-        <!-- Left Column -->
-        <Grid Grid.Column="0" >
-            <!-- Main Row Definitions -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource MainGridRow0}" />
-                <RowDefinition Height="{StaticResource MainGridRow1}" />
-                <RowDefinition Height="{StaticResource MainGridRow2}" />
-            </Grid.RowDefinitions>
+        <!-- Left Sidebar -->
+        <Grid Grid.Column="0" Background="#1C1D22" >
+			<Viewbox VerticalAlignment="Top" >
+				<ListView Grid.Row="1" Background="Transparent" BorderBrush="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+				
+				    <!-- Send -->
+				    <ListViewItem HorizontalAlignment="Left" Margin="0,5,0,5" MouseEnter="ListViewItem_MouseEnter" >
+					    <Image Source="/FSMain;component/Resources/Send.png" />
+					
+					    <!--Tooltip-->
+					    <ListViewItem.ToolTip>
+						    <ToolTip x:Name="tt_send" Content="Send" Style="{StaticResource tt_style}"/>
+					    </ListViewItem.ToolTip>
 
+				    </ListViewItem>
+
+				    <!-- Receive -->
+				    <ListViewItem HorizontalAlignment="Left" Margin="0,5,0,5" MouseEnter="ListViewItem_MouseEnter" >
+					    <Image Source="/FSMain;component/Resources/Receive.png" />
+
+					    <!--Tooltip-->
+					    <ListViewItem.ToolTip>
+						    <ToolTip x:Name="tt_receive" Content="Receive" Style="{StaticResource tt_style}"/>
+					    </ListViewItem.ToolTip>
+
+				    </ListViewItem>
+
+				    <!-- Settings -->
+				    <ListViewItem HorizontalAlignment="Left" Margin="0,5,0,5" MouseEnter="ListViewItem_MouseEnter" >
+					    <Image Source="/FSMain;component/Resources/Settings.png" />
+
+					    <!--Tooltip-->
+					    <ListViewItem.ToolTip>
+						    <ToolTip x:Name="tt_settings" Content="Settings" Style="{StaticResource tt_style}"/>
+					    </ListViewItem.ToolTip>
+
+				    </ListViewItem>
+			    </ListView>
+			</Viewbox>
             
         </Grid>
 
-        <!-- Middle Column -->
-        <Grid Grid.Column="1" >
-            <!-- Main Row Definitions -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource MainGridRow0}" />
-                <RowDefinition Height="{StaticResource MainGridRow1}" />
-                <RowDefinition Height="{StaticResource MainGridRow2}" />
-            </Grid.RowDefinitions>
-
+        <!-- Information Panel -->
+        <Grid Grid.Column="1" Background="#0E0E10" >
             
         </Grid>
 
-        <!-- Right Column -->
-        <Grid Grid.Column="2" >
-            <!-- Main Row Definitions -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource MainGridRow0}" />
-                <RowDefinition Height="{StaticResource MainGridRow1}" />
-                <RowDefinition Height="{StaticResource MainGridRow2}" />
-            </Grid.RowDefinitions>
-
+        <!-- File Panel -->
+        <Grid Grid.Column="2" Background="#0E0E10" >
             
         </Grid>
     </Grid>

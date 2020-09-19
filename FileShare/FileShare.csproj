@@ -109,10 +109,19 @@
       <Project>{CB334B74-B952-4549-B80D-72B8F530BBFE}</Project>
       <Name>AssistanceClasses</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FSMain\FSMain.csproj">
-      <Project>{0298042f-07ef-4731-b5ba-7ed18701c58c}</Project>
-      <Name>FSMain</Name>
+    <ProjectReference Include="..\SendPanel\SendPanel.csproj">
+      <Project>{072C31A5-F825-4357-B44B-DA33E9037B28}</Project>
+      <Name>SendPanel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Receive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

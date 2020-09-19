@@ -1,6 +1,6 @@
 ﻿// Using Class Libraries
 using AssistanceClasses;
-using FSMain;
+using SendPanel;
 
 // Using System
 using System.Collections.Generic;
@@ -50,7 +50,7 @@ namespace FileShare
         }
 
         // ViewModel Switching
-        private void OnGoFSMain(object obj)
+        private void OnGoSendPanel(object obj)
         {
             ChangeViewModel(PageViewModels[0]);
         }
@@ -58,13 +58,13 @@ namespace FileShare
         public ApplicationViewModel()
         {
             // Add available pages and set page
-            PageViewModels.Add(new FSMainViewModel());
+            PageViewModels.Add(new SendPanelViewModel());
 
             // Set Startup ViewModel
             CurrentPageViewModel = PageViewModels[0];
 
             // Mediator Receiving
-            Mediator.Subscribe("GoToFSMain", OnGoFSMain);
+            Mediator.Subscribe("GoToSendPanel", OnGoSendPanel);
         }
     }
 }
