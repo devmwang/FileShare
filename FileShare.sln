@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare", "FileShare\FileShare.csproj", "{BF74DE4D-31B6-4332-BEF4-8EF44F24C6FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssistanceClasses", "AssistanceClasses\AssistanceClasses.csproj", "{CB334B74-B952-4549-B80D-72B8F530BBFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF74DE4D-31B6-4332-BEF4-8EF44F24C6FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF74DE4D-31B6-4332-BEF4-8EF44F24C6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF74DE4D-31B6-4332-BEF4-8EF44F24C6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF74DE4D-31B6-4332-BEF4-8EF44F24C6FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB334B74-B952-4549-B80D-72B8F530BBFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB334B74-B952-4549-B80D-72B8F530BBFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB334B74-B952-4549-B80D-72B8F530BBFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB334B74-B952-4549-B80D-72B8F530BBFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2671F8E-4D05-4DC2-A606-ADF1CEB0A105}
+	EndGlobalSection
+EndGlobal
