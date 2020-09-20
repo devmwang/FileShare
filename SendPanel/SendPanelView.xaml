@@ -16,7 +16,7 @@
             <ColumnDefinition Width="20*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="15*" />
             <RowDefinition Height="16*" />
             <RowDefinition Height="0.25*" />
             <RowDefinition Height="16*" />
@@ -25,7 +25,7 @@
             <RowDefinition Height="0.25*" />
             <RowDefinition Height="10*" />
             <RowDefinition Height="11.25*" />
-            <RowDefinition Height="20*" />
+            <RowDefinition Height="15*" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Column="1" Grid.Row="1">
@@ -129,20 +129,39 @@
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
+            
+            <Button Grid.Column="2" Grid.Row="2" BorderBrush="Transparent" >
+                <!-- WHY TF DOES WPF NEED 17 FUCKING LINES OF XAML TO CHANGE A BUTTON'S FUCKING COLOUR -->
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1C1D22"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
 
-            <Button Grid.Column="2" Grid.Row="2" BorderBrush="Transparent" Background="Transparent" >
                 <Viewbox>
-                    <TextBox FontFamily="Helvetica" 
-                             FontWeight="Light"
-                             Text="Send"
-                             FontSize="25"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Bottom"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             HorizontalContentAlignment="Center"
-                             Opacity="1" />
+                    <TextBlock FontFamily="Helvetica" 
+                               FontWeight="Light"
+                               Text="Send"
+                               FontSize="25"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Bottom"
+                               Foreground="White"
+                               Background="Transparent"
+                               Opacity="1" />
                 </Viewbox>
             </Button>
 
