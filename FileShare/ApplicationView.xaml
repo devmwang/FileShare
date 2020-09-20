@@ -10,6 +10,7 @@
         xmlns:local="clr-namespace:FileShare"
         xmlns:SendPanel="clr-namespace:SendPanel;assembly=SendPanel"
         
+        ContentRendered="Window_ContentRendered"
         mc:Ignorable="d"
         FontSize="12" FontFamily="Arial Rounded MT Bold"
         Title="File Share" Height="600" Width="1000">
@@ -30,11 +31,9 @@
         <XAMLPresentation:GridLength x:Key="MainGridColumn2">46*</XAMLPresentation:GridLength>
 
         <!-- Row Heights-->
-        <!--
-        <XAMLPresentation:GridLength x:Key="MainGridRow0">0*</XAMLPresentation:GridLength>
-        <XAMLPresentation:GridLength x:Key="MainGridRow1">100*</XAMLPresentation:GridLength>
-        <XAMLPresentation:GridLength x:Key="MainGridRow2">0*</XAMLPresentation:GridLength>
-        -->
+        <XAMLPresentation:GridLength x:Key="MainGridRow0">20*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridRow1">70*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridRow2">10*</XAMLPresentation:GridLength>
 
         <!-- Tooltip Style -->
         <Style TargetType="ToolTip" x:Key="tt_style">
@@ -42,7 +41,7 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="20,0,0,0"/>
-            <Setter Property="Background" Value="#4A5668"/>
+            <Setter Property="Background" Value="#1C1D22"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Fonts/Roboto-Light.ttf #Roboto"/>
@@ -53,9 +52,36 @@
             <Setter Property="HasDropShadow" Value="True"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
+        
+        <!-- Vertical Progress Bar Style -->
+        <Style TargetType="ProgressBar">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ProgressBar" >
+                        <Grid x:Name="Root">
+                            <Border Name="PART_Track" CornerRadius="2" Background="LightGreen" BorderBrush="Green" BorderThickness="2" />
+                            <Border Name="PART_Indicator" CornerRadius="2" Background="Green" BorderBrush="Transparent" BorderThickness="2" HorizontalAlignment="Left" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Orientation" Value="Vertical">
+                                <Setter TargetName="Root" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="90" />
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Setter TargetName="Root" Property="Width" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height}" />
+                                <Setter TargetName="Root" Property="Height" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
-    
-    <Grid>
+
+    <Grid Background="#0E0E10" >
         <!-- Main Column Definitions -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource MainGridColumn0}" x:Name="LeftColumnWidth" />
@@ -64,55 +90,88 @@
         </Grid.ColumnDefinitions>
 
 
+
         <!-- Left Sidebar -->
         <Grid Grid.Column="0" Background="#1C1D22" >
-            <Viewbox VerticalAlignment="Top" >
-                <ListView Grid.Row="1" Background="Transparent" BorderBrush="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+            <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource MainGridRow0}" />
+            <RowDefinition Height="{StaticResource MainGridRow1}" />
+            <RowDefinition Height="{StaticResource MainGridRow2}" />
+        </Grid.RowDefinitions>
+            
+            <!-- Panel Select -->
+            <Grid Grid.Column="0" Grid.Row="0" >
+                <Viewbox VerticalAlignment="Top" >
+                    <ListView Grid.Row="1" Background="Transparent" BorderBrush="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
 
-                    <!-- Send -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,10,0,10" MouseEnter="ListViewItem_MouseEnter" >
-                        <Image Source="/Resources/Send.png" />
+                        <!-- Send -->
+                        <ListViewItem Margin="0,10,0,10" MouseEnter="ListViewItem_MouseEnter" >
+                            <Image Source="/Resources/Send.png" />
 
-                        <!--Tooltip-->
-                        <ListViewItem.ToolTip>
-                            <ToolTip x:Name="tt_send" Content="Send" Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
+                            <!--Tooltip-->
+                            <ListViewItem.ToolTip>
+                                <ToolTip x:Name="tt_send" Content="Send" Style="{StaticResource tt_style}"/>
+                            </ListViewItem.ToolTip>
 
-                    </ListViewItem>
+                        </ListViewItem>
 
-                    <!-- Receive -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,10,0,10" MouseEnter="ListViewItem_MouseEnter" >
-                        <Image Source="/Resources/Receive.png" />
+                        <!-- Receive -->
+                        <ListViewItem Margin="0,10,0,10" MouseEnter="ListViewItem_MouseEnter" >
+                            <Image Source="/Resources/Receive.png" />
 
-                        <!--Tooltip-->
-                        <ListViewItem.ToolTip>
-                            <ToolTip x:Name="tt_receive" Content="Receive" Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
+                            <!--Tooltip-->
+                            <ListViewItem.ToolTip>
+                                <ToolTip x:Name="tt_receive" Content="Receive" Style="{StaticResource tt_style}"/>
+                            </ListViewItem.ToolTip>
 
-                    </ListViewItem>
+                        </ListViewItem>
 
-                    <!-- Settings -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,10,0,10" MouseEnter="ListViewItem_MouseEnter" >
-                        <Image Source="/Resources/Settings.png" />
+                        <!-- Settings -->
+                        <ListViewItem Margin="0,10,0,10" MouseEnter="ListViewItem_MouseEnter" >
+                            <Image Source="/Resources/Settings.png" />
 
-                        <!--Tooltip-->
-                        <ListViewItem.ToolTip>
-                            <ToolTip x:Name="tt_settings" Content="Settings" Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
+                            <!--Tooltip-->
+                            <ListViewItem.ToolTip>
+                                <ToolTip x:Name="tt_settings" Content="Settings" Style="{StaticResource tt_style}"/>
+                            </ListViewItem.ToolTip>
 
-                    </ListViewItem>
-                </ListView>
-            </Viewbox>
+                        </ListViewItem>
+                    </ListView>
+                </Viewbox>
+            </Grid>
+            
+            <!-- Progress Bar -->
+            <Grid Grid.Column="0" Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="80*" />
+                    <ColumnDefinition Width="10*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="98*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
 
+                <ProgressBar Grid.Column="1" Grid.Row="1" x:Name="FileSendReceiveProgress" Orientation="Vertical" />
+
+            </Grid>
+
+            <!-- File Size -->
+            <Grid Grid.Column="0" Grid.Row="2" >
+
+            </Grid>
         </Grid>
+        
+        
 
         <!-- Information Panel -->
-        <Grid Grid.Column="1" Background="#0E0E10" >
+        <Grid Grid.Column="1" >
             <ContentControl Content="{Binding CurrentPageViewModel}" />
         </Grid>
 
         <!-- File Panel -->
-        <Grid Grid.Column="2" Background="#0E0E10" >
+        <Grid Grid.Column="2" >
             
         </Grid>
     </Grid>

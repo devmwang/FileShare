@@ -114,9 +114,6 @@
     <Resource Include="FileShare.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FileShare.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AssistanceClasses\AssistanceClasses.csproj">
       <Project>{CB334B74-B952-4549-B80D-72B8F530BBFE}</Project>
       <Name>AssistanceClasses</Name>
@@ -134,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FileShare.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net461\System.Runtime.WindowsRuntime.targets" Condition="Exists('..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net461\System.Runtime.WindowsRuntime.targets')" />
