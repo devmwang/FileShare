@@ -9,5 +9,6 @@ namespace SendPanel
 {
     public class SendPanelViewModel : BaseViewModel, IPageViewModel
     {
+
     }
 }
