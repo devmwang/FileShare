@@ -18,7 +18,7 @@ namespace FileShare
         }
 
         // Mouse Enter Tooltip
-        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
         {
             tt_send.Visibility = Visibility.Visible;
             tt_receive.Visibility = Visibility.Visible;
