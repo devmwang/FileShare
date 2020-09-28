@@ -13,7 +13,7 @@
         ContentRendered="Window_ContentRendered"
         mc:Ignorable="d"
         FontSize="12" FontFamily="Helvetica"
-        Title="File Share" Height="600" Width="1000">
+        Title="File Share" Height="600" Width="1000" >
 
     
     
@@ -194,7 +194,49 @@
 
         <!-- File Panel -->
         <Grid Grid.Column="2" >
-            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="40*" />
+                <ColumnDefinition Width="30*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="40*" />
+                <RowDefinition Height="30*" />
+            </Grid.RowDefinitions>
+
+            <Viewbox Grid.Column="1" Grid.Row="1" >
+                <Button Click="OpenFileSelect" Width="100" Height="100" x:Name="FileSelectBttn" >
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button" >
+                            <Grid>
+                                <Viewbox>
+                                    <Path Fill="White" >
+                                        <Path.Data>
+                                            <CombinedGeometry GeometryCombineMode="Xor">
+                                                <CombinedGeometry.Geometry1>
+                                                    <EllipseGeometry RadiusX="75" RadiusY="75" Center="75,75" />
+                                                </CombinedGeometry.Geometry1>
+                                                <CombinedGeometry.Geometry2>
+                                                    <EllipseGeometry RadiusX="70" RadiusY="70" Center="75,75" />
+                                                </CombinedGeometry.Geometry2>
+                                            </CombinedGeometry>
+                                        </Path.Data>
+                                    </Path>
+                                </Viewbox>
+
+                                <Viewbox>
+                                    <Image Margin="40" Source="/Resources/Send.png" />
+                                </Viewbox>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Viewbox>
+
+            <Viewbox Grid.Column="1" Grid.Row="2" >
+                <ListBox x:Name="FilePathListbox" Background="Transparent" Foreground="White" />
+            </Viewbox>
         </Grid>
     </Grid>
 </Window>

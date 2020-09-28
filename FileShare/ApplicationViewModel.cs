@@ -5,12 +5,11 @@ using SendPanel;
 // Using System
 using System.Collections.Generic;
 using System.Linq;
-
-
+using System.Windows.Input;
 
 namespace FileShare
 {
-    public class ApplicationViewModel : BaseViewModel
+    public class ApplicationViewModel : BaseViewModel, IPageViewModel
     {
         // View And VM Switching Logic
         private IPageViewModel _currentPageViewModel;
