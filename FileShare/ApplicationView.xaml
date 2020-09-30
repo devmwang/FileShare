@@ -205,8 +205,10 @@
                 <RowDefinition Height="30*" />
             </Grid.RowDefinitions>
 
+            <Border Grid.ColumnSpan="3" Grid.RowSpan="3" AllowDrop="True" Drop="FileUploadDrop" Background="#0E0E10" />
+
             <Viewbox Grid.Column="1" Grid.Row="1" >
-                <Button Click="OpenFileSelect" Width="100" Height="100" x:Name="FileSelectBttn" >
+                <Button x:Name="FileSelectBttn" Click="OpenFileSelect" Width="100" Height="100" >
                     <Button.Template>
                         <ControlTemplate TargetType="Button" >
                             <Grid>
@@ -226,7 +228,7 @@
                                 </Viewbox>
 
                                 <Viewbox>
-                                    <Image Margin="40" Source="/Resources/Send.png" />
+                                    <Image Margin="500" Source="/Resources/Plus.png" />
                                 </Viewbox>
                             </Grid>
                         </ControlTemplate>

@@ -69,9 +69,27 @@ namespace FileShare
             if (FileSelectDialog.ShowDialog() == true)
             {
                 foreach (string filename in FileSelectDialog.FileNames)
+                {
                     FilePathListbox.Items.Add(filename);
+                }
             }
-        }   
+        }
+
+        // File Drag and Drop
+        private void FileUploadDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // Note that you can have more than one file.
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (string filename in files)
+                {
+                    FilePathListbox.Items.Add(filename);
+                }
+            }
+        }
+
         #endregion
     }
 }
