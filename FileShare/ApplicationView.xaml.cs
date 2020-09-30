@@ -16,6 +16,10 @@ namespace FileShare
     /// </summary>
     public partial class ApplicationView : Window
     {
+        // Instantiate Data from Model
+        ApplicationModel applicationModel = new ApplicationModel();
+
+        // Initialize ApplicationView
         public ApplicationView()
         {
             InitializeComponent();
@@ -68,9 +72,9 @@ namespace FileShare
             FileSelectDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (FileSelectDialog.ShowDialog() == true)
             {
-                foreach (string filename in FileSelectDialog.FileNames)
+                foreach (string filepath in FileSelectDialog.FileNames)
                 {
-                    FilePathListbox.Items.Add(filename);
+                    applicationModel.AddFilePath(filepath);
                 }
             }
         }
@@ -83,13 +87,23 @@ namespace FileShare
                 // Note that you can have more than one file.
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                foreach (string filename in files)
+                foreach (string filepath in files)
                 {
-                    FilePathListbox.Items.Add(filename);
+                    applicationModel.AddFilePath(filepath);
                 }
             }
         }
 
+        // TESTING:
+        private void UpdateListBox(object sender, RoutedEventArgs e)
+        {
+            var FilePaths = applicationModel.FilePaths;
+            FilePathListbox.Items.Clear();
+            foreach (string filepath in FilePaths)
+            {
+                FilePathListbox.Items.Add(filepath);
+            }
+        }
         #endregion
     }
 }

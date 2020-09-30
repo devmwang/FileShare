@@ -12,9 +12,11 @@ namespace FileShare
     public class ApplicationViewModel : BaseViewModel, IPageViewModel
     {
         // View And VM Switching Logic
+        // Private ViewModels List and CurrentPage Var
         private IPageViewModel _currentPageViewModel;
         private List<IPageViewModel> _pageViewModels;
 
+        // Public ViewModels List
         public List<IPageViewModel> PageViewModels
         {
             get
@@ -26,6 +28,7 @@ namespace FileShare
             }
         }
 
+        // Public CurrentPage Var
         public IPageViewModel CurrentPageViewModel
         {
             get
@@ -39,6 +42,7 @@ namespace FileShare
             }
         }
 
+        // Function to change ViewModel
         private void ChangeViewModel(IPageViewModel viewModel)
         {
             if (!PageViewModels.Contains(viewModel))
@@ -48,7 +52,7 @@ namespace FileShare
                 .FirstOrDefault(vm => vm == viewModel);
         }
 
-        // ViewModel Switching
+        // Callable function to change ViewModel
         private void OnGoSendPanel(object obj)
         {
             ChangeViewModel(PageViewModels[0]);

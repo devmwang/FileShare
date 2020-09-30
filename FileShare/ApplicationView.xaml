@@ -236,6 +236,11 @@
                 </Button>
             </Viewbox>
 
+            <!--TESTING: REMOVE FROM DISTRIBUTION CODE-->
+            <Viewbox Grid.Column="0" Grid.Row="2" >
+                <Button x:Name="FilePathUpdate" Background="White" Click="UpdateListBox" />
+            </Viewbox>
+
             <Viewbox Grid.Column="1" Grid.Row="2" >
                 <ListBox x:Name="FilePathListbox" Background="Transparent" Foreground="White" />
             </Viewbox>
