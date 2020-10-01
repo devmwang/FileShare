@@ -2,8 +2,8 @@
 using AssistanceClasses;
 
 //Using System
-using System;
-using System.Windows.Input;
+
+
 
 namespace SendPanel
 {
