@@ -1,16 +1,13 @@
-﻿// Using Class Libraries
-using AssistanceClasses;
-
-// Using System
+﻿// Using System
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
 
 
-namespace FileShare
+namespace FileShareData
 {
-    public class ApplicationModel : ObservableObject
+    public class FileShareDataModel
     {
         // Private Lists and Vars
         // Private File Path List

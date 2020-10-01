@@ -78,7 +78,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ApplicationModel.cs" />
     <Compile Include="ApplicationView.xaml.cs">
       <DependentUpon>ApplicationView.xaml</DependentUpon>
     </Compile>
@@ -118,6 +117,10 @@
     <ProjectReference Include="..\AssistanceClasses\AssistanceClasses.csproj">
       <Project>{CB334B74-B952-4549-B80D-72B8F530BBFE}</Project>
       <Name>AssistanceClasses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileShareData\FileShareData.csproj">
+      <Project>{b1dd3c4c-f321-4f7d-8bc4-8d455b9bdc35}</Project>
+      <Name>FileShareData</Name>
     </ProjectReference>
     <ProjectReference Include="..\SendPanel\SendPanel.csproj">
       <Project>{072C31A5-F825-4357-B44B-DA33E9037B28}</Project>

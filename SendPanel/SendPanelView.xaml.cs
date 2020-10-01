@@ -1,19 +1,15 @@
-﻿// Using System
+﻿// Using Class Libraries
+using FileShareData;
+
+// Using System
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml;
+
+// Using Win32
+using Microsoft.Win32;
+
+
 
 namespace SendPanel
 {
@@ -22,12 +18,15 @@ namespace SendPanel
     /// </summary>
     public partial class SendPanelView : UserControl
     {
+        // Instantiate Data from Model
+        FileShareDataModel applicationModel = new FileShareDataModel();
+
         public SendPanelView()
         {
             InitializeComponent();
         }
 
-        // FORM EVENT MAGIC CRAP
+        #region Form Background Text Logic
         // On IP Address Bar enter, set content to empty
         private void IPBlockEnter(object sender, EventArgs e)
         {
@@ -81,6 +80,49 @@ namespace SendPanel
                 BufferBlock.Text = "Buffer Size";
             }
         }
+        #endregion
 
+        #region File Select
+        // File Selection Button
+        private void OpenFileSelect(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog FileSelectDialog = new OpenFileDialog();
+            FileSelectDialog.Multiselect = true;
+            FileSelectDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (FileSelectDialog.ShowDialog() == true)
+            {
+                foreach (string filepath in FileSelectDialog.FileNames)
+                {
+                    applicationModel.AddFilePath(filepath);
+                }
+            }
+        }
+
+        // File Drag and Drop
+        private void FileUploadDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // Note that you can have more than one file.
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (string filepath in files)
+                {
+                    applicationModel.AddFilePath(filepath);
+                }
+            }
+        }
+        #endregion
+
+        // TESTING:
+        private void UpdateListBox(object sender, RoutedEventArgs e)
+        {
+            var FilePaths = applicationModel.FilePaths;
+            FilePathListbox.Items.Clear();
+            foreach (string filepath in FilePaths)
+            {
+                FilePathListbox.Items.Add(filepath);
+            }
+        }
     }
 }

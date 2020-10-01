@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 
+
+
 namespace FileShare
 {
     public class ApplicationViewModel : BaseViewModel, IPageViewModel
@@ -67,7 +69,7 @@ namespace FileShare
             CurrentPageViewModel = PageViewModels[0];
 
             // Mediator Receiving
-            Mediator.Subscribe("GoToSendPanel", OnGoSendPanel);
+            //Mediator.Subscribe("GoToSendPanel", OnGoSendPanel);
         }
     }
 }

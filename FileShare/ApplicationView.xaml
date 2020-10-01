@@ -17,6 +17,7 @@
 
     
     
+    <!--#region Window Resources -->
     <Window.Resources>
         <!-- MVVM Controls -->
         <!--Send Panel-->
@@ -27,8 +28,7 @@
         <!-- Grid Column and Row Sizes -->
         <!--Column Widths-->
         <XAMLPresentation:GridLength x:Key="MainGridColumn0">4*</XAMLPresentation:GridLength>
-        <XAMLPresentation:GridLength x:Key="MainGridColumn1">50*</XAMLPresentation:GridLength>
-        <XAMLPresentation:GridLength x:Key="MainGridColumn2">46*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridColumn1">96*</XAMLPresentation:GridLength>
 
         <!-- Row Heights-->
         <XAMLPresentation:GridLength x:Key="MainGridRow0">20*</XAMLPresentation:GridLength>
@@ -80,18 +80,18 @@
             </Setter>
         </Style>
     </Window.Resources>
+    <!--#endregion-->
 
     <Grid Background="#0E0E10" >
         <!-- Main Column Definitions -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource MainGridColumn0}" x:Name="LeftColumnWidth" />
-            <ColumnDefinition Width="{StaticResource MainGridColumn1}" x:Name="CenterColumnWidth" />
-            <ColumnDefinition Width="{StaticResource MainGridColumn2}" x:Name="RightColumnWidth" />
+            <ColumnDefinition Width="{StaticResource MainGridColumn1}" x:Name="RightColumnWidth" />
         </Grid.ColumnDefinitions>
 
 
 
-        <!-- Left Sidebar -->
+        <!--#region Left Sidebar -->
         <Grid Grid.Column="0" Background="#1C1D22" >
             <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource MainGridRow0}" />
@@ -184,66 +184,12 @@
                 </Viewbox>
             </Grid>
         </Grid>
-        
-        
+        <!--#endregion-->
 
-        <!-- Information Panel -->
+        <!--#region Information Panel & File Panel -->
         <Grid Grid.Column="1" >
             <ContentControl Content="{Binding CurrentPageViewModel}" />
         </Grid>
-
-        <!-- File Panel -->
-        <Grid Grid.Column="2" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*" />
-                <ColumnDefinition Width="40*" />
-                <ColumnDefinition Width="30*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30*" />
-                <RowDefinition Height="40*" />
-                <RowDefinition Height="30*" />
-            </Grid.RowDefinitions>
-
-            <Border Grid.ColumnSpan="3" Grid.RowSpan="3" AllowDrop="True" Drop="FileUploadDrop" Background="#0E0E10" />
-
-            <Viewbox Grid.Column="1" Grid.Row="1" >
-                <Button x:Name="FileSelectBttn" Click="OpenFileSelect" Width="100" Height="100" >
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button" >
-                            <Grid>
-                                <Viewbox>
-                                    <Path Fill="White" >
-                                        <Path.Data>
-                                            <CombinedGeometry GeometryCombineMode="Xor">
-                                                <CombinedGeometry.Geometry1>
-                                                    <EllipseGeometry RadiusX="75" RadiusY="75" Center="75,75" />
-                                                </CombinedGeometry.Geometry1>
-                                                <CombinedGeometry.Geometry2>
-                                                    <EllipseGeometry RadiusX="70" RadiusY="70" Center="75,75" />
-                                                </CombinedGeometry.Geometry2>
-                                            </CombinedGeometry>
-                                        </Path.Data>
-                                    </Path>
-                                </Viewbox>
-
-                                <Viewbox>
-                                    <Image Margin="500" Source="/Resources/Plus.png" />
-                                </Viewbox>
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-            </Viewbox>
-
-            <!--TESTING: REMOVE FROM DISTRIBUTION CODE-->
-            <Viewbox Grid.Column="0" Grid.Row="2" >
-                <Button x:Name="FilePathUpdate" Background="White" Click="UpdateListBox" />
-            </Viewbox>
-
-            <Viewbox Grid.Column="1" Grid.Row="2" >
-                <ListBox x:Name="FilePathListbox" Background="Transparent" Foreground="White" />
-            </Viewbox>
-        </Grid>
+        <!--#endregion-->
     </Grid>
 </Window>

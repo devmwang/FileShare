@@ -1,13 +1,11 @@
 ﻿// Using System
 using System;
 using System.ComponentModel;
-using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 
-// Using Win32
-using Microsoft.Win32;
+
 
 namespace FileShare
 {
@@ -16,9 +14,6 @@ namespace FileShare
     /// </summary>
     public partial class ApplicationView : Window
     {
-        // Instantiate Data from Model
-        ApplicationModel applicationModel = new ApplicationModel();
-
         // Initialize ApplicationView
         public ApplicationView()
         {
@@ -61,49 +56,6 @@ namespace FileShare
 		{
 			FileSendReceiveProgress.Value = e.ProgressPercentage;
 		}
-        #endregion
-
-        #region File Select
-        // File Selection Button
-        private void OpenFileSelect(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog FileSelectDialog = new OpenFileDialog();
-            FileSelectDialog.Multiselect = true;
-            FileSelectDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            if (FileSelectDialog.ShowDialog() == true)
-            {
-                foreach (string filepath in FileSelectDialog.FileNames)
-                {
-                    applicationModel.AddFilePath(filepath);
-                }
-            }
-        }
-
-        // File Drag and Drop
-        private void FileUploadDrop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                // Note that you can have more than one file.
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-
-                foreach (string filepath in files)
-                {
-                    applicationModel.AddFilePath(filepath);
-                }
-            }
-        }
-
-        // TESTING:
-        private void UpdateListBox(object sender, RoutedEventArgs e)
-        {
-            var FilePaths = applicationModel.FilePaths;
-            FilePathListbox.Items.Clear();
-            foreach (string filepath in FilePaths)
-            {
-                FilePathListbox.Items.Add(filepath);
-            }
-        }
         #endregion
     }
 }
