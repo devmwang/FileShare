@@ -52,7 +52,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SendPanelModel.cs" />
     <Compile Include="SendPanelView.xaml.cs">
       <DependentUpon>SendPanelView.xaml</DependentUpon>
     </Compile>
