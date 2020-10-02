@@ -8,8 +8,7 @@ using System.Windows.Controls;
 
 // Using Win32
 using Microsoft.Win32;
-
-
+using System.Linq.Expressions;
 
 namespace SendPanel
 {
@@ -19,12 +18,37 @@ namespace SendPanel
     public partial class SendPanelView : UserControl
     {
         // Instantiate Data from Model
-        FileShareDataModel applicationModel = new FileShareDataModel();
+        FileShareDataModel FSDataModel = new FileShareDataModel();
 
         public SendPanelView()
         {
             InitializeComponent();
         }
+
+        #region Send Form Logic
+        private void SendFile(object sender, RoutedEventArgs e)
+        {
+            FSDataModel.SendIPAddress = IPBlock.Text;
+
+            try
+            {
+                FSDataModel.SendPort = Int32.Parse(PortBlock.Text);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("SendPort Str -> Int Parse Failed");
+            }
+
+            try
+            {
+                FSDataModel.SendBufferSize = Int32.Parse(BufferBlock.Text);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("SendBufferSize Str -> Int Parse Failed");
+            }
+        }
+        #endregion
 
         #region Form Background Text Logic
         // On IP Address Bar enter, set content to empty
@@ -94,7 +118,7 @@ namespace SendPanel
             {
                 foreach (string filepath in FileSelectDialog.FileNames)
                 {
-                    applicationModel.AddFilePath(filepath);
+                    FSDataModel.AddFilePath(filepath);
                 }
             }
         }
@@ -109,7 +133,7 @@ namespace SendPanel
 
                 foreach (string filepath in files)
                 {
-                    applicationModel.AddFilePath(filepath);
+                    FSDataModel.AddFilePath(filepath);
                 }
             }
         }
@@ -118,12 +142,20 @@ namespace SendPanel
         // TESTING:
         private void UpdateListBox(object sender, RoutedEventArgs e)
         {
-            var FilePaths = applicationModel.FilePaths;
+            var FilePaths = FSDataModel.FilePaths;
+            var SendIPData = FSDataModel.SendIPAddress;
+            var SendPortData = FSDataModel.SendPort;
+            var SendBufferSizeData = FSDataModel.SendBufferSize;
+
             FilePathListbox.Items.Clear();
             foreach (string filepath in FilePaths)
             {
                 FilePathListbox.Items.Add(filepath);
             }
+
+            FilePathListbox.Items.Add(SendIPData);
+            FilePathListbox.Items.Add(SendPortData);
+            FilePathListbox.Items.Add(SendBufferSizeData);
         }
     }
 }
