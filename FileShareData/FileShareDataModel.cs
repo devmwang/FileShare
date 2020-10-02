@@ -9,11 +9,13 @@ namespace FileShareData
 {
     public class FileShareDataModel
     {
-        // Private Lists and Vars
+        #region Private Lists and Vars
         // Private File Path List
         private List<String> _filePaths;
 
-        // Public List and Var Accessors and Setters
+        #endregion
+
+        #region Public List and Var Accessors and Setters
         // Public File Path List Accessor
         public List<String> FilePaths
         {
@@ -28,7 +30,9 @@ namespace FileShareData
             }
         }
 
-        // Public File Path List Setter
+        #endregion
+
+        #region Public File Path List Setter
         public void AddFilePath(string filepath)
         {
             if (_filePaths == null)
@@ -38,5 +42,7 @@ namespace FileShareData
 
             _filePaths.Add(filepath);
         }
+
+        #endregion
     }
 }

@@ -11,6 +11,8 @@
         xmlns:SendPanel="clr-namespace:SendPanel;assembly=SendPanel"
         
         ContentRendered="Window_ContentRendered"
+        MouseDown="ApplicationWindow_MouseDown"
+        
         mc:Ignorable="d"
         FontSize="12" FontFamily="Helvetica"
         Title="File Share" Height="600" Width="1000" >
@@ -82,7 +84,7 @@
     </Window.Resources>
     <!--#endregion-->
 
-    <Grid Background="#0E0E10" >
+    <Grid Background="#0E0E10" x:Name="ApplicationBackground" Focusable="True" >
         <!-- Main Column Definitions -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource MainGridColumn0}" x:Name="LeftColumnWidth" />

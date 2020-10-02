@@ -20,6 +20,12 @@ namespace FileShare
             InitializeComponent();
         }
 
+        // Focus on background when clicked
+        private void ApplicationWindow_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ApplicationBackground.Focus();
+        }
+
         #region Sidebar Tooltips
         // Mouse Enter Tooltip
         private void Button_MouseEnter(object sender, MouseEventArgs e)
@@ -35,24 +41,26 @@ namespace FileShare
         // Progress Bar
         private void Window_ContentRendered(object sender, EventArgs e)
 		{
-			BackgroundWorker worker = new BackgroundWorker();
-			worker.WorkerReportsProgress = true;
-			worker.DoWork += worker_DoWork;
-			worker.ProgressChanged += worker_ProgressChanged;
+            FileSendReceiveProgress.Maximum = 500;
 
-			worker.RunWorkerAsync();
+			BackgroundWorker ProgressBarWorker = new BackgroundWorker();
+            ProgressBarWorker.WorkerReportsProgress = true;
+            ProgressBarWorker.DoWork += ProgressBarWorker_DoWork;
+            ProgressBarWorker.ProgressChanged += ProgressBarWorker_ProgressChanged;
+
+            ProgressBarWorker.RunWorkerAsync();
 		}
 
-		void worker_DoWork(object sender, DoWorkEventArgs e)
+		void ProgressBarWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < 500; i++)
 			{
 				(sender as BackgroundWorker).ReportProgress(i);
 				Thread.Sleep(100);
 			}
 		}
 
-		void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+		void ProgressBarWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
 		{
 			FileSendReceiveProgress.Value = e.ProgressPercentage;
 		}

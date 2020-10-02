@@ -84,10 +84,11 @@ namespace SendPanel
 
         #region File Select
         // File Selection Button
-        private void OpenFileSelect(object sender, RoutedEventArgs e)
+        private void FileUploadSelect(object sender, RoutedEventArgs e)
         {
             OpenFileDialog FileSelectDialog = new OpenFileDialog();
             FileSelectDialog.Multiselect = true;
+            FileSelectDialog.Filter = "All files (*.*)|*.*";
             FileSelectDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (FileSelectDialog.ShowDialog() == true)
             {
