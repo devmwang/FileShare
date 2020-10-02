@@ -13,7 +13,7 @@ namespace FileShareData
         private List<String> _filePaths;
 
         // Send IP Address
-        private string _sendIPAddress = "hehe";
+        private string _sendIPAddress;
 
         // Send Port
         private int _sendPort;
