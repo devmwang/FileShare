@@ -23,6 +23,28 @@
         <!-- Row Heights-->
         <!--<XAMLPresentation:GridLength x:Key="MainGridRow0">100*</XAMLPresentation:GridLength>
         <XAMLPresentation:GridLength x:Key="MainGridRow1">0*</XAMLPresentation:GridLength>-->
+        
+        <!-- Button Style -->
+        <Style TargetType="{x:Type Button}" x:Key="Button_Style" >
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True" >
+                    <Setter Property="Background" Value="#1C1D22" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True" >
+                    <Setter Property="Background" Value="#0E0E10" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <!--#endregion-->
     
@@ -150,30 +172,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <Button Grid.Column="2" Grid.Row="2" BorderBrush="Transparent" >
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True" >
-                                    <Setter Property="Background" Value="#1C1D22" />
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="True" >
-                                    <Setter Property="Background" Value="#0E0E10" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-
+                <Button Grid.Column="2" Grid.Row="2" BorderBrush="Transparent" Style="{StaticResource Button_Style}" Cursor="Hand" >
                     <Viewbox>
                         <TextBlock FontFamily="Helvetica" 
                                FontWeight="Light"
@@ -215,7 +214,7 @@
             <Border Grid.ColumnSpan="3" Grid.RowSpan="3" AllowDrop="True" Drop="FileUploadDrop" Background="#0E0E10" />
 
             <Viewbox Grid.Column="1" Grid.Row="1" >
-                <Button x:Name="FileSelectBttn" Click="FileUploadSelect" Width="100" Height="100" >
+                <Button x:Name="FileSelectBttn" Click="FileUploadSelect" Width="100" Height="100" Cursor="Hand" >
                     <Button.Template>
                         <ControlTemplate TargetType="Button" >
                             <Grid>

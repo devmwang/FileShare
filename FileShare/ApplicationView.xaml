@@ -38,7 +38,7 @@
         <XAMLPresentation:GridLength x:Key="MainGridRow2">10*</XAMLPresentation:GridLength>
 
         <!-- Tooltip Style -->
-        <Style TargetType="ToolTip" x:Key="tt_style">
+        <Style TargetType="ToolTip" x:Key="TT_Style">
             <Setter Property="Placement" Value="Right"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="100"/>
@@ -116,7 +116,7 @@
 
                         <!--Tooltip-->
                         <Button.ToolTip>
-                            <ToolTip x:Name="tt_send" Content="Send" Style="{StaticResource tt_style}"/>
+                            <ToolTip x:Name="tt_send" Content="Send" Style="{StaticResource TT_Style}"/>
                         </Button.ToolTip>
                     </Button>
                 </Viewbox>
@@ -128,7 +128,7 @@
 
                         <!--Tooltip-->
                         <Button.ToolTip>
-                            <ToolTip x:Name="tt_receive" Content="Receive" Style="{StaticResource tt_style}"/>
+                            <ToolTip x:Name="tt_receive" Content="Receive" Style="{StaticResource TT_Style}"/>
                         </Button.ToolTip>
                     </Button>
                 </Viewbox>
@@ -140,7 +140,7 @@
 
                         <!--Tooltip-->
                         <Button.ToolTip>
-                            <ToolTip x:Name="tt_settings" Content="Settings" Style="{StaticResource tt_style}"/>
+                            <ToolTip x:Name="tt_settings" Content="Settings" Style="{StaticResource TT_Style}"/>
                         </Button.ToolTip>
                     </Button>
                 </Viewbox>
