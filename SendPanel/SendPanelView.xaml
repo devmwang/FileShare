@@ -133,13 +133,14 @@
             <Rectangle Grid.Column="1" Grid.Row="4" Fill="White" />
             <Rectangle Grid.Column="1" Grid.Row="6" Fill="White" />
 
+            <!-- Send Button -->
             <Grid Grid.Column="1" Grid.Row="8" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="24*" />
+                    <ColumnDefinition Width="20*" />
                     <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="51*" />
+                    <ColumnDefinition Width="59*" />
                     <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="24*" />
+                    <ColumnDefinition Width="20*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
@@ -150,7 +151,7 @@
                 </Grid.RowDefinitions>
 
                 <Button Grid.Column="2" Grid.Row="2" BorderBrush="Transparent" >
-                    <!-- WHY TF DOES WPF NEED 17 FUCKING LINES OF XAML TO CHANGE A BUTTON'S FUCKING COLOUR??? -->
+                    <!--WHY TF DOES WPF NEED 17 FUCKING LINES OF XAML TO CHANGE A BUTTON'S FUCKING COLOUR???-->
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Background" Value="Transparent"/>
