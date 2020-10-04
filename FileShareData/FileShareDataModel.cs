@@ -10,89 +10,88 @@ namespace FileShareData
     {
         #region Private Lists and Vars
         // File Path List
-        private List<String> _filePaths;
+        //private static List<String> _filePaths;
+        private static string _filePath;
 
         // Send IP Address
-        private string _sendIPAddress;
+        private static string _sendIPAddress;
 
         // Send Port
-        private int _sendPort;
+        private static int _sendPort;
 
         // Send Buffer Size
-        private int _sendBufferSize;
+        private static int _sendBufferSize;
+
+        // Transfer Progress
+        private static int _transferProgress;
 
         #endregion
 
         #region Public Variable Accessors and Setters
-        // Send IP Address
-        public string SendIPAddress
+        public static string FilePath
         {
-            get
-            {
-                return _sendIPAddress;
-            }
-            set
-            {
-                _sendIPAddress = value;
-            }
+            get => _filePath;
+            set => _filePath = value;
+        }
+
+        // Send IP Address
+        public static string SendIPAddress
+        {
+            get => _sendIPAddress;
+            set => _sendIPAddress = value;
         }
 
         // Send Port
-        public int SendPort
+        public static int SendPort
         {
-            get
-            {
-                return _sendPort;
-            }
-            set
-            {
-                _sendPort = value;
-            }
+            get => _sendPort;
+            set => _sendPort = value;
         }
 
         // Send Buffer Size
-        public int SendBufferSize
+        public static int SendBufferSize
         {
-            get
-            {
-                return _sendBufferSize;
-            }
-            set
-            {
-                _sendBufferSize = value;
-            }
+            get => _sendBufferSize;
+            set => _sendBufferSize = value;
+        }
+
+        // Transfer Progress
+        public static int TransferProgress
+        {
+            get => _transferProgress;
+            set => _transferProgress = value;
         }
 
         #endregion
 
         #region Public List Accessors
         // File Path List Accessor
-        public List<String> FilePaths
-        {
-            get
-            {
-                if (_filePaths == null)
-                {
-                    _filePaths = new List<String>();
-                }
+        //public static List<String> FilePaths
+        //{
+        //    get
+        //    {
+        //        if (_filePaths == null)
+        //        {
+        //            _filePaths = new List<String>();
+        //        }
 
-                return _filePaths;
-            }
-        }
+        //        return _filePaths;
+        //    }
+        //}
 
         #endregion
 
         #region Public List Setter
         // File Path List Setter
-        public void AddFilePath(string filepath)
-        {
-            if (_filePaths == null)
-            {
-                _filePaths = new List<String>();
-            }
+        //public static void AddFilePath(string filepath)
+        //{
+        //    if (_filePaths == null)
+        //    {
+        //        _filePaths = new List<String>();
+        //    }
 
-            _filePaths.Add(filepath);
-        }
+        //    _filePaths.Add(filepath);
+        //}
 
         #endregion
     }

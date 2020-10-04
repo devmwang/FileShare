@@ -44,5 +44,11 @@
     <Compile Include="FileSendLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileShareData\FileShareData.csproj">
+      <Project>{B1DD3C4C-F321-4F7D-8BC4-8D455B9BDC35}</Project>
+      <Name>FileShareData</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

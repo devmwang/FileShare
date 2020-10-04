@@ -61,14 +61,14 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="ProgressBar" >
                         <Grid x:Name="Root">
-                            <Border Name="PART_Track" CornerRadius="2" Background="LightGreen" BorderBrush="Green" BorderThickness="2" />
-                            <Border Name="PART_Indicator" CornerRadius="2" Background="Green" BorderBrush="Transparent" BorderThickness="2" HorizontalAlignment="Left" />
+                            <Border Name="PART_Track" CornerRadius="2" Background="#0E0E10" BorderBrush="DarkGray" BorderThickness="2" />
+                            <Border Name="PART_Indicator" CornerRadius="2" Background="DarkGray" BorderBrush="DarkGray" BorderThickness="2" HorizontalAlignment="Left" />
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="Orientation" Value="Vertical">
                                 <Setter TargetName="Root" Property="LayoutTransform">
                                     <Setter.Value>
-                                        <RotateTransform Angle="90" />
+                                        <RotateTransform Angle="270" />
                                     </Setter.Value>
                                 </Setter>
 
@@ -154,9 +154,9 @@
                     <ColumnDefinition Width="10*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="98*" />
-                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="96*" />
+                    <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
 
                 <ProgressBar Grid.Column="1" Grid.Row="1" x:Name="FileSendReceiveProgress" Orientation="Vertical" />

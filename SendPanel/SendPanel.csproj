@@ -68,6 +68,14 @@
       <Project>{CB334B74-B952-4549-B80D-72B8F530BBFE}</Project>
       <Name>AssistanceClasses</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileReceive\FileReceive.csproj">
+      <Project>{8ca6f2b2-2470-45a8-a4e2-1e85bb1f9bf5}</Project>
+      <Name>FileReceive</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileSend\FileSend.csproj">
+      <Project>{ef9a5596-aff6-47df-9b52-eef206a1750d}</Project>
+      <Name>FileSend</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FileShareData\FileShareData.csproj">
       <Project>{b1dd3c4c-f321-4f7d-8bc4-8d455b9bdc35}</Project>
       <Name>FileShareData</Name>

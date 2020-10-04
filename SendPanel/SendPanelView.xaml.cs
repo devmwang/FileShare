@@ -1,5 +1,6 @@
 ﻿// Using Class Libraries
 using FileShareData;
+using FileSend;
 
 // Using System
 using System;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 // Using Win32
 using Microsoft.Win32;
 using System.Linq.Expressions;
+using System.ComponentModel;
 
 namespace SendPanel
 {
@@ -17,8 +19,8 @@ namespace SendPanel
     /// </summary>
     public partial class SendPanelView : UserControl
     {
-        // Instantiate Data from Model
-        FileShareDataModel FSDataModel = new FileShareDataModel();
+        // Instantiate File Send Logic
+        FileSendLogic FileSend = new FileSendLogic();
 
         public SendPanelView()
         {
@@ -26,13 +28,15 @@ namespace SendPanel
         }
 
         #region Send Form Logic
-        private void SendFile(object sender, RoutedEventArgs e)
+        // Save data in form and send attached file.
+        private void SendFileBttn(object sender, RoutedEventArgs e)
         {
-            FSDataModel.SendIPAddress = IPBlock.Text;
+            // Save all the form data
+            FileShareDataModel.SendIPAddress = IPBlock.Text;
 
             try
             {
-                FSDataModel.SendPort = Int32.Parse(PortBlock.Text);
+                FileShareDataModel.SendPort = Int32.Parse(PortBlock.Text);
             }
             catch (FormatException)
             {
@@ -41,13 +45,24 @@ namespace SendPanel
 
             try
             {
-                FSDataModel.SendBufferSize = Int32.Parse(BufferBlock.Text);
+                FileShareDataModel.SendBufferSize = Int32.Parse(BufferBlock.Text);
             }
             catch (FormatException)
             {
                 Console.WriteLine("SendBufferSize Str -> Int Parse Failed");
             }
+
+            // Send File
+            // Async Run File Send
+            SendFileAsync();
         }
+            
+        // Async Function
+        private async void SendFileAsync()
+        {
+            await FileSend.SendFile();
+        }
+
         #endregion
 
         #region Form Background Text Logic
@@ -110,49 +125,53 @@ namespace SendPanel
         // File Selection Button
         private void FileUploadSelect(object sender, RoutedEventArgs e)
         {
+            // Dialog Window
             OpenFileDialog FileSelectDialog = new OpenFileDialog();
-            FileSelectDialog.Multiselect = true;
+            FileSelectDialog.Multiselect = false;
             FileSelectDialog.Filter = "All files (*.*)|*.*";
             FileSelectDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (FileSelectDialog.ShowDialog() == true)
             {
-                foreach (string filepath in FileSelectDialog.FileNames)
-                {
-                    FSDataModel.AddFilePath(filepath);
-                }
+                //foreach (string filepath in FileSelectDialog.FileNames)
+                //{
+                //    FSDataModel.AddFilePath(filepath);
+                //}
+                FileShareDataModel.FilePath = FileSelectDialog.FileName;
             }
         }
 
         // File Drag and Drop
-        private void FileUploadDrop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                // Note that you can have more than one file.
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+        //private void FileUploadDrop(object sender, DragEventArgs e)
+        //{
+        //    // Drag and Drop Logic
+        //    if (e.Data.GetDataPresent(DataFormats.FileDrop))
+        //    {
+        //        // Note that you can have more than one file.
+        //        string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                foreach (string filepath in files)
-                {
-                    FSDataModel.AddFilePath(filepath);
-                }
-            }
-        }
+        //        foreach (string filepath in files)
+        //        {
+        //            FSDataModel.AddFilePath(filepath);
+        //        }
+        //    }
+        //}
         #endregion
 
         // TESTING:
         private void UpdateListBox(object sender, RoutedEventArgs e)
         {
-            var FilePaths = FSDataModel.FilePaths;
-            var SendIPData = FSDataModel.SendIPAddress;
-            var SendPortData = FSDataModel.SendPort;
-            var SendBufferSizeData = FSDataModel.SendBufferSize;
+            // Testing Code
+            var FilePath = FileShareDataModel.FilePath;
+            var SendIPData = FileShareDataModel.SendIPAddress;
+            var SendPortData = FileShareDataModel.SendPort;
+            var SendBufferSizeData = FileShareDataModel.SendBufferSize;
 
             FilePathListbox.Items.Clear();
-            foreach (string filepath in FilePaths)
-            {
-                FilePathListbox.Items.Add(filepath);
-            }
-
+            //foreach (string filepath in FilePaths)
+            //{
+            //    FilePathListbox.Items.Add(filepath);
+            //}
+            FilePathListbox.Items.Add(FilePath);
             FilePathListbox.Items.Add(SendIPData);
             FilePathListbox.Items.Add(SendPortData);
             FilePathListbox.Items.Add(SendBufferSizeData);

@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShare", "FileShare\FileShare.csproj", "{BF74DE4D-31B6-4332-BEF4-8EF44F24C6FC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EF9A5596-AFF6-47DF-9B52-EEF206A1750D} = {EF9A5596-AFF6-47DF-9B52-EEF206A1750D}
+		{8CA6F2B2-2470-45A8-A4E2-1E85BB1F9BF5} = {8CA6F2B2-2470-45A8-A4E2-1E85BB1F9BF5}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssistanceClasses", "AssistanceClasses\AssistanceClasses.csproj", "{CB334B74-B952-4549-B80D-72B8F530BBFE}"
 EndProject

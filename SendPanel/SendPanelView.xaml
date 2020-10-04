@@ -172,7 +172,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <Button Grid.Column="2" Grid.Row="2" Click="SendFile" BorderBrush="Transparent" Style="{StaticResource Button_Style}" Cursor="Hand" >
+                <Button Grid.Column="2" Grid.Row="2" Click="SendFileBttn" BorderBrush="Transparent" Style="{StaticResource Button_Style}" Cursor="Hand" >
                     <Viewbox>
                         <TextBlock FontFamily="Helvetica" 
                                FontWeight="Light"
@@ -210,7 +210,7 @@
                 <RowDefinition Height="30*" />
             </Grid.RowDefinitions>
 
-            <Border Grid.ColumnSpan="3" Grid.RowSpan="3" AllowDrop="True" Drop="FileUploadDrop" Background="#0E0E10" />
+            <!--<Border Grid.ColumnSpan="3" Grid.RowSpan="3" AllowDrop="True" Drop="FileUploadDrop" Background="#0E0E10" />-->
 
             <Viewbox Grid.Column="1" Grid.Row="1" >
                 <Button x:Name="FileSelectBttn" Click="FileUploadSelect" Width="100" Height="100" Cursor="Hand" >

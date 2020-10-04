@@ -51,16 +51,16 @@ namespace FileShare
             ProgressBarWorker.RunWorkerAsync();
 		}
 
-		void ProgressBarWorker_DoWork(object sender, DoWorkEventArgs e)
+		private void ProgressBarWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
 			for (int i = 0; i < 500; i++)
 			{
 				(sender as BackgroundWorker).ReportProgress(i);
-				Thread.Sleep(100);
+				Thread.Sleep(50);
 			}
 		}
 
-		void ProgressBarWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void ProgressBarWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
 		{
 			FileSendReceiveProgress.Value = e.ProgressPercentage;
 		}
