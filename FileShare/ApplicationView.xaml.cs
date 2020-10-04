@@ -1,7 +1,12 @@
-﻿// Using System
+﻿// Using Class Libraries
+using AssistanceClasses;
+using FileShareData;
+
+// Using System
 using System;
 using System.ComponentModel;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -38,32 +43,51 @@ namespace FileShare
         #endregion
 
         #region Progress Bar
-        // Progress Bar
-        private void Window_ContentRendered(object sender, EventArgs e)
-		{
-            FileSendReceiveProgress.Maximum = 500;
+        // Progress Bar Updates
+        private async void Window_ContentRendered(object sender, EventArgs e)
+        {
+            await ProgressBarUpdate();
+        }
 
-			BackgroundWorker ProgressBarWorker = new BackgroundWorker();
-            ProgressBarWorker.WorkerReportsProgress = true;
-            ProgressBarWorker.DoWork += ProgressBarWorker_DoWork;
-            ProgressBarWorker.ProgressChanged += ProgressBarWorker_ProgressChanged;
+        private async Task ProgressBarUpdate()
+        {
+            await Task.Run(() =>
+            {
+                if (FileShareDataModel.TransferProgress != 100)
+                {
+                    FileSendReceiveProgress.Dispatcher.Invoke(new Action(() =>
+                    {
+                        FileSendReceiveProgress.Value = FileShareDataModel.TransferProgress;
+                    }));
+                }
+            });
+        }
 
-            ProgressBarWorker.RunWorkerAsync();
-		}
+  //      private void Window_ContentRendered(object sender, EventArgs e)
+		//{
+  //          FileSendReceiveProgress.Maximum = 500;
 
-		private void ProgressBarWorker_DoWork(object sender, DoWorkEventArgs e)
-		{
-			for (int i = 0; i < 500; i++)
-			{
-				(sender as BackgroundWorker).ReportProgress(i);
-				Thread.Sleep(50);
-			}
-		}
+		//	BackgroundWorker ProgressBarWorker = new BackgroundWorker();
+  //          ProgressBarWorker.WorkerReportsProgress = true;
+  //          ProgressBarWorker.DoWork += ProgressBarWorker_DoWork;
+  //          ProgressBarWorker.ProgressChanged += ProgressBarWorker_ProgressChanged;
 
-        private void ProgressBarWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-		{
-			FileSendReceiveProgress.Value = e.ProgressPercentage;
-		}
+  //          ProgressBarWorker.RunWorkerAsync();
+		//}
+
+		//private void ProgressBarWorker_DoWork(object sender, DoWorkEventArgs e)
+		//{
+		//	for (int i = 0; i < 500; i++)
+		//	{
+		//		(sender as BackgroundWorker).ReportProgress(i);
+		//		Thread.Sleep(50);
+		//	}
+		//}
+
+  //      private void ProgressBarWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+		//{
+		//	FileSendReceiveProgress.Value = e.ProgressPercentage;
+		//}
         #endregion
     }
 }

@@ -1,16 +1,17 @@
 ﻿// Using System
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 
 
 namespace FileShareData
 {
-    public class FileShareDataModel
+    public class FileShareDataModel : INotifyPropertyChanged
     {
         #region Private Lists and Vars
         // File Path List
-        //private static List<String> _filePaths;
         private static string _filePath;
 
         // Send IP Address
@@ -59,39 +60,27 @@ namespace FileShareData
         public static int TransferProgress
         {
             get => _transferProgress;
-            set => _transferProgress = value;
+            set
+            {
+                _transferProgress = value;
+                //NotifyPropertyChanged();
+            }
         }
 
         #endregion
 
-        #region Public List Accessors
-        // File Path List Accessor
-        //public static List<String> FilePaths
-        //{
-        //    get
-        //    {
-        //        if (_filePaths == null)
-        //        {
-        //            _filePaths = new List<String>();
-        //        }
+        #region Variable Change Notification Logic
+        // Create event
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        //        return _filePaths;
-        //    }
-        //}
-
-        #endregion
-
-        #region Public List Setter
-        // File Path List Setter
-        //public static void AddFilePath(string filepath)
-        //{
-        //    if (_filePaths == null)
-        //    {
-        //        _filePaths = new List<String>();
-        //    }
-
-        //    _filePaths.Add(filepath);
-        //}
+        // Notify
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
         #endregion
     }

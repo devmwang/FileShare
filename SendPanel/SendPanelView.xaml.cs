@@ -9,8 +9,6 @@ using System.Windows.Controls;
 
 // Using Win32
 using Microsoft.Win32;
-using System.Linq.Expressions;
-using System.ComponentModel;
 
 namespace SendPanel
 {
@@ -53,16 +51,14 @@ namespace SendPanel
             }
 
             // Send File
-            // Async Run File Send
-            SendFileAsync();
-        }
-            
-        // Async Function
-        private async void SendFileAsync()
-        {
-            await FileSend.SendFile();
-        }
+            FileSend.Response Transfer = FileSendLogic.Send(FileShareDataModel.FilePath, FileShareDataModel.SendIPAddress, FileShareDataModel.SendPort);
 
+            // Wait for Transfer Status
+            if (Transfer.status == 1)
+            {
+                MessageBox.Show("File Sent Successfully.", "Status", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
         #endregion
 
         #region Form Background Text Logic
@@ -132,29 +128,20 @@ namespace SendPanel
             FileSelectDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (FileSelectDialog.ShowDialog() == true)
             {
-                //foreach (string filepath in FileSelectDialog.FileNames)
-                //{
-                //    FSDataModel.AddFilePath(filepath);
-                //}
                 FileShareDataModel.FilePath = FileSelectDialog.FileName;
             }
         }
 
         // File Drag and Drop
-        //private void FileUploadDrop(object sender, DragEventArgs e)
-        //{
-        //    // Drag and Drop Logic
-        //    if (e.Data.GetDataPresent(DataFormats.FileDrop))
-        //    {
-        //        // Note that you can have more than one file.
-        //        string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-
-        //        foreach (string filepath in files)
-        //        {
-        //            FSDataModel.AddFilePath(filepath);
-        //        }
-        //    }
-        //}
+        private void FileUploadDrop(object sender, DragEventArgs e)
+        {
+            // Drag and Drop Logic
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // Get File from Drop and Set File Path
+                FileShareDataModel.FilePath = (string)e.Data.GetData(DataFormats.FileDrop);
+            }
+        }
         #endregion
 
         // TESTING:
