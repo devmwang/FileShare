@@ -1,14 +1,12 @@
 ﻿// Using Class Libraries
+using AssistanceClasses;
 using FileShareData;
 
 // Using System
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 
 
@@ -18,7 +16,8 @@ namespace FileSend
     {
         public static Response Send(string FilePath, string TargetIP, int Port)
         {
-            var ProgressValue = FileShareDataModel.TransferProgress;
+            FileShareDataModel.TransferComplete = false;
+            Mediator.Notify("StartProgressBar", "");
 
             try
             {
@@ -51,8 +50,7 @@ namespace FileSend
                                     byte[] data_to_send = CreateDataPacket(Encoding.UTF8.GetBytes("127"), temp_buffer);
                                     ns.Write(data_to_send, 0, data_to_send.Length);
                                     ns.Flush();
-                                    ProgressValue = (int)Math.Ceiling((double)recv_file_pointer / (double)fs.Length * 100);
-                                    Console.WriteLine(ProgressValue);
+                                    FileShareDataModel.TransferProgress = (int)Math.Ceiling((double)recv_file_pointer / (double)fs.Length * 100);
                                 }
                                 else
                                 {
@@ -70,8 +68,8 @@ namespace FileSend
                     if (loop_break == true)
                     {
                         ns.Close();
-                        ProgressValue = 0;
-                        Console.WriteLine(ProgressValue);
+                        FileShareDataModel.TransferProgress = 0;
+                        FileShareDataModel.TransferComplete = true;
                         return new Response { status = 1, description = "File Sent Successfully." };
                     }
 
@@ -79,6 +77,7 @@ namespace FileSend
             }
             catch (Exception e)
             {
+                FileShareDataModel.TransferComplete = true;
                 return new Response { status = -1, description = "Error: " + e.Message };
             }
         }

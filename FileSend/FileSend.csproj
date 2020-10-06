@@ -46,6 +46,10 @@
     <Compile Include="Response.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AssistanceClasses\AssistanceClasses.csproj">
+      <Project>{CB334B74-B952-4549-B80D-72B8F530BBFE}</Project>
+      <Name>AssistanceClasses</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FileShareData\FileShareData.csproj">
       <Project>{B1DD3C4C-F321-4F7D-8BC4-8D455B9BDC35}</Project>
       <Name>FileShareData</Name>

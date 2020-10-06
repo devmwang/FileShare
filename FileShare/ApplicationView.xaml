@@ -10,7 +10,7 @@
         xmlns:local="clr-namespace:FileShare"
         xmlns:SendPanel="clr-namespace:SendPanel;assembly=SendPanel"
         
-        ContentRendered="Window_ContentRendered"
+        
         MouseDown="ApplicationWindow_MouseDown"
         
         mc:Ignorable="d"

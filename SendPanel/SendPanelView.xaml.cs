@@ -9,6 +9,7 @@ using System.Windows.Controls;
 
 // Using Win32
 using Microsoft.Win32;
+using System.Threading.Tasks;
 
 namespace SendPanel
 {
@@ -27,7 +28,7 @@ namespace SendPanel
 
         #region Send Form Logic
         // Save data in form and send attached file.
-        private void SendFileBttn(object sender, RoutedEventArgs e)
+        private async void SendFileBttn(object sender, RoutedEventArgs e)
         {
             // Save all the form data
             FileShareDataModel.SendIPAddress = IPBlock.Text;
@@ -41,22 +42,17 @@ namespace SendPanel
                 Console.WriteLine("SendPort Str -> Int Parse Failed");
             }
 
-            try
-            {
-                FileShareDataModel.SendBufferSize = Int32.Parse(BufferBlock.Text);
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("SendBufferSize Str -> Int Parse Failed");
-            }
-
             // Send File
-            FileSend.Response Transfer = FileSendLogic.Send(FileShareDataModel.FilePath, FileShareDataModel.SendIPAddress, FileShareDataModel.SendPort);
+            FileSend.Response Transfer = await Task.Run(() => FileSendLogic.Send(FileShareDataModel.FilePath, FileShareDataModel.SendIPAddress, FileShareDataModel.SendPort));
 
             // Wait for Transfer Status
             if (Transfer.status == 1)
             {
                 MessageBox.Show("File Sent Successfully.", "Status", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            if (Transfer.status == -1)
+            {
+                MessageBox.Show("File Transfer Failed.", "Alert!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         #endregion
@@ -151,7 +147,6 @@ namespace SendPanel
             var FilePath = FileShareDataModel.FilePath;
             var SendIPData = FileShareDataModel.SendIPAddress;
             var SendPortData = FileShareDataModel.SendPort;
-            var SendBufferSizeData = FileShareDataModel.SendBufferSize;
 
             FilePathListbox.Items.Clear();
             //foreach (string filepath in FilePaths)
@@ -161,7 +156,6 @@ namespace SendPanel
             FilePathListbox.Items.Add(FilePath);
             FilePathListbox.Items.Add(SendIPData);
             FilePathListbox.Items.Add(SendPortData);
-            FilePathListbox.Items.Add(SendBufferSizeData);
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Windows.Web.Syndication;
 
 
 
@@ -23,6 +24,8 @@ namespace FileShare
         public ApplicationView()
         {
             InitializeComponent();
+
+            Mediator.Subscribe("StartProgressBar", StartProgressBar);
         }
 
         // Focus on background when clicked
@@ -44,50 +47,44 @@ namespace FileShare
 
         #region Progress Bar
         // Progress Bar Updates
-        private async void Window_ContentRendered(object sender, EventArgs e)
-        {
-            await ProgressBarUpdate();
-        }
-
-        private async Task ProgressBarUpdate()
+        private async void StartProgressBar(object sender)
         {
             await Task.Run(() =>
             {
-                if (FileShareDataModel.TransferProgress != 100)
+                while (FileShareDataModel.TransferComplete == false)
                 {
-                    FileSendReceiveProgress.Dispatcher.Invoke(new Action(() =>
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
+                        // Run on UI Thread
                         FileSendReceiveProgress.Value = FileShareDataModel.TransferProgress;
                     }));
                 }
             });
         }
 
-  //      private void Window_ContentRendered(object sender, EventArgs e)
-		//{
-  //          FileSendReceiveProgress.Maximum = 500;
+        //private void StartProgressBar(object sender)
+        //{
+        //    BackgroundWorker ProgressBarWorker = new BackgroundWorker();
+        //    ProgressBarWorker.WorkerReportsProgress = true;
+        //    ProgressBarWorker.DoWork += ProgressBarWorker_DoWork;
+        //    ProgressBarWorker.ProgressChanged += ProgressBarWorker_ProgressChanged;
 
-		//	BackgroundWorker ProgressBarWorker = new BackgroundWorker();
-  //          ProgressBarWorker.WorkerReportsProgress = true;
-  //          ProgressBarWorker.DoWork += ProgressBarWorker_DoWork;
-  //          ProgressBarWorker.ProgressChanged += ProgressBarWorker_ProgressChanged;
+        //    ProgressBarWorker.RunWorkerAsync();
+        //}
 
-  //          ProgressBarWorker.RunWorkerAsync();
-		//}
+        //private void ProgressBarWorker_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    while (FileShareDataModel.TransferComplete == false)
+        //    {
+        //        int currentProgress = FileShareDataModel.TransferProgress;
+        //        (sender as BackgroundWorker).ReportProgress(currentProgress);
+        //    }
+        //}
 
-		//private void ProgressBarWorker_DoWork(object sender, DoWorkEventArgs e)
-		//{
-		//	for (int i = 0; i < 500; i++)
-		//	{
-		//		(sender as BackgroundWorker).ReportProgress(i);
-		//		Thread.Sleep(50);
-		//	}
-		//}
-
-  //      private void ProgressBarWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-		//{
-		//	FileSendReceiveProgress.Value = e.ProgressPercentage;
-		//}
+        //private void ProgressBarWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        //{
+        //    FileSendReceiveProgress.Value = e.ProgressPercentage;
+        //}
         #endregion
     }
 }

@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace FileShareData
 {
-    public class FileShareDataModel : INotifyPropertyChanged
+    public class FileShareDataModel
     {
         #region Private Lists and Vars
         // File Path List
@@ -20,11 +20,11 @@ namespace FileShareData
         // Send Port
         private static int _sendPort;
 
-        // Send Buffer Size
-        private static int _sendBufferSize;
-
         // Transfer Progress
         private static int _transferProgress;
+
+        // Transfer Complete
+        private static bool _transferComplete;
 
         #endregion
 
@@ -49,13 +49,6 @@ namespace FileShareData
             set => _sendPort = value;
         }
 
-        // Send Buffer Size
-        public static int SendBufferSize
-        {
-            get => _sendBufferSize;
-            set => _sendBufferSize = value;
-        }
-
         // Transfer Progress
         public static int TransferProgress
         {
@@ -63,23 +56,14 @@ namespace FileShareData
             set
             {
                 _transferProgress = value;
-                //NotifyPropertyChanged();
             }
         }
 
-        #endregion
-
-        #region Variable Change Notification Logic
-        // Create event
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Notify
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        // Transfer Complete
+        public static bool TransferComplete
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            get => _transferComplete;
+            set => _transferComplete = value;
         }
 
         #endregion
