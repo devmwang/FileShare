@@ -9,7 +9,7 @@
         
         xmlns:local="clr-namespace:FileShare"
         xmlns:SendPanel="clr-namespace:SendPanel;assembly=SendPanel"
-        
+        xmlns:ReceivePanel="clr-namespace:ReceivePanel;assembly=ReceivePanel"
         
         MouseDown="ApplicationWindow_MouseDown"
         
@@ -25,6 +25,9 @@
         <!--Send Panel-->
         <DataTemplate DataType="{x:Type SendPanel:SendPanelViewModel}">
             <SendPanel:SendPanelView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ReceivePanel:ReceivePanelViewModel}">
+            <ReceivePanel:ReceivePanelView />
         </DataTemplate>
         
         <!-- Grid Column and Row Sizes -->
@@ -111,7 +114,7 @@
 
                 <Viewbox Grid.Row="0" >
                     <!-- Send -->
-                    <Button Command="{Binding OnGoSendPanel}" Background="Transparent" >
+                    <Button Click="OnGoSendPanel" Background="Transparent" >
                         <Image Source="/Resources/Send.png" />
 
                         <!--Tooltip-->
@@ -123,7 +126,7 @@
 
                 <Viewbox Grid.Row="1" >
                     <!-- Receive -->
-                    <Button Background="Transparent" >
+                    <Button Click="OnGoReceivePanel" Background="Transparent" >
                         <Image Source="/Resources/Receive.png" />
 
                         <!--Tooltip-->
@@ -135,7 +138,7 @@
 
                 <Viewbox Grid.Row="2" >
                     <!-- Settings -->
-                    <Button Background="Transparent" >
+                    <Button Click="OnGoSettingsPanel" Background="Transparent" >
                         <Image Source="/Resources/Settings.png" />
 
                         <!--Tooltip-->

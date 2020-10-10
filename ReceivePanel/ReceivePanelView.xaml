@@ -145,7 +145,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <Button Grid.Column="2" Grid.Row="2" Click="SendFileBttn" BorderBrush="Transparent" Style="{StaticResource Button_Style}" Cursor="Hand" >
+                <Button Grid.Column="2" Grid.Row="2" Click="StartServer" BorderBrush="Transparent" Style="{StaticResource Button_Style}" Cursor="Hand" >
                     <Viewbox>
                         <TextBlock FontFamily="Helvetica" 
                                FontWeight="Light"

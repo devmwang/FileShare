@@ -1,6 +1,7 @@
 ﻿// Using Class Libraries
 using AssistanceClasses;
 using SendPanel;
+using ReceivePanel;
 
 // Using System
 using System.Collections.Generic;
@@ -13,6 +14,22 @@ namespace FileShare
 {
     public class ApplicationViewModel : BaseViewModel, IPageViewModel
     {
+        // Run on Startup
+        public ApplicationViewModel()
+        {
+            // Add available pages and set page
+            PageViewModels.Add(new SendPanelViewModel());
+            PageViewModels.Add(new ReceivePanelViewModel());
+
+            // Set Startup ViewModel
+            CurrentPageViewModel = PageViewModels[0];
+
+            // Mediator Receiving
+            Mediator.Subscribe("GoToSendPanel", GoToSendPanel);
+            Mediator.Subscribe("GoToReceivePanel", GoToReceivePanel);
+            Mediator.Subscribe("GoToSettingsPanel", GoToSettingsPanel);
+        }
+
         // View And VM Switching Logic
         // Private ViewModels List and CurrentPage Var
         private IPageViewModel _currentPageViewModel;
@@ -55,21 +72,17 @@ namespace FileShare
         }
 
         // Callable function to change ViewModel
-        private void OnGoSendPanel(object obj)
+        private void GoToSendPanel(object obj)
         {
             ChangeViewModel(PageViewModels[0]);
         }
-
-        public ApplicationViewModel()
+        private void GoToReceivePanel(object obj)
         {
-            // Add available pages and set page
-            PageViewModels.Add(new SendPanelViewModel());
-
-            // Set Startup ViewModel
-            CurrentPageViewModel = PageViewModels[0];
-
-            // Mediator Receiving
-            //Mediator.Subscribe("GoToSendPanel", OnGoSendPanel);
+            ChangeViewModel(PageViewModels[1]);
+        }
+        private void GoToSettingsPanel(object obj)
+        {
+            //ChangeViewModel(PageViewModels[2]);
         }
     }
 }

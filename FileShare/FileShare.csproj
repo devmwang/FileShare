@@ -113,6 +113,10 @@
       <Project>{b1dd3c4c-f321-4f7d-8bc4-8d455b9bdc35}</Project>
       <Name>FileShareData</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ReceivePanel\ReceivePanel.csproj">
+      <Project>{16792183-cb41-4421-b9e7-1370a7b95230}</Project>
+      <Name>ReceivePanel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SendPanel\SendPanel.csproj">
       <Project>{072C31A5-F825-4357-B44B-DA33E9037B28}</Project>
       <Name>SendPanel</Name>

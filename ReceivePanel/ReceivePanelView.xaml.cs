@@ -25,6 +25,13 @@ namespace ReceivePanel
             InitializeComponent();
         }
 
+        #region Server/Receive Logic
+        private void StartServer(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
         #region Form Background Text Logic
         // On IP Address Bar enter, set content to empty
         private void FileLocBlockEnter(object sender, EventArgs e)

@@ -34,6 +34,22 @@ namespace FileShare
             ApplicationBackground.Focus();
         }
 
+        #region Sidebar Buttons
+        // Send Panel
+        private void OnGoSendPanel(object sender, RoutedEventArgs e)
+        {
+            Mediator.Notify("GoToSendPanel", "");
+        }
+        private void OnGoReceivePanel(object sender, RoutedEventArgs e)
+        {
+            Mediator.Notify("GoToReceivePanel", "");
+        }
+        private void OnGoSettingsPanel(object sender, RoutedEventArgs e)
+        {
+            Mediator.Notify("GoToSettingsPanel", "");
+        }
+        #endregion
+
         #region Sidebar Tooltips
         // Mouse Enter Tooltip
         private void Button_MouseEnter(object sender, MouseEventArgs e)
@@ -61,30 +77,6 @@ namespace FileShare
                 }
             });
         }
-
-        //private void StartProgressBar(object sender)
-        //{
-        //    BackgroundWorker ProgressBarWorker = new BackgroundWorker();
-        //    ProgressBarWorker.WorkerReportsProgress = true;
-        //    ProgressBarWorker.DoWork += ProgressBarWorker_DoWork;
-        //    ProgressBarWorker.ProgressChanged += ProgressBarWorker_ProgressChanged;
-
-        //    ProgressBarWorker.RunWorkerAsync();
-        //}
-
-        //private void ProgressBarWorker_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    while (FileShareDataModel.TransferComplete == false)
-        //    {
-        //        int currentProgress = FileShareDataModel.TransferProgress;
-        //        (sender as BackgroundWorker).ReportProgress(currentProgress);
-        //    }
-        //}
-
-        //private void ProgressBarWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        //{
-        //    FileSendReceiveProgress.Value = e.ProgressPercentage;
-        //}
         #endregion
     }
 }
