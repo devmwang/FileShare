@@ -11,7 +11,7 @@ namespace FileShareData
     public class FileShareDataModel
     {
         #region Private Lists and Vars
-        // File Path List
+        // File Path
         private static string _filePath;
 
         // Send IP Address
@@ -26,9 +26,16 @@ namespace FileShareData
         // Transfer Complete
         private static bool _transferComplete;
 
+        // Receive File Location
+        private static string _fileSavePath;
+
+        // Receive Port
+        private static int _receivePort;
+
         #endregion
 
         #region Public Variable Accessors and Setters
+        // File Path
         public static string FilePath
         {
             get => _filePath;
@@ -64,6 +71,20 @@ namespace FileShareData
         {
             get => _transferComplete;
             set => _transferComplete = value;
+        }
+
+        // Receive File Location
+        public static string FileSavePath
+        {
+            get => _fileSavePath;
+            set => _fileSavePath = value;
+        }
+
+        // Receive Port
+        public static int ReceivePort
+        {
+            get => _receivePort;
+            set => _receivePort = value;
         }
 
         #endregion
