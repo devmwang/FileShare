@@ -18,9 +18,6 @@ namespace SendPanel
     /// </summary>
     public partial class SendPanelView : UserControl
     {
-        // Instantiate File Send Logic
-        FileSendLogic FileSend = new FileSendLogic();
-
         public SendPanelView()
         {
             InitializeComponent();

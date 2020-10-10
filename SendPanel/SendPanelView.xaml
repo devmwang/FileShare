@@ -169,6 +169,7 @@
             </Grid>
         </Grid>
         <!--#endregion-->        
+        
         <!--#region File Panel -->
         <Grid Grid.Column="1" >
             <Grid.ColumnDefinitions>
