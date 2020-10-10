@@ -3,10 +3,175 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             
+             xmlns:XAMLPresentation="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+             
              xmlns:local="clr-namespace:ReceivePanel"
+             
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="600" d:DesignWidth="960">
+
+
+
+    <!--#region UserControl Resources-->
+    <UserControl.Resources>
+        <!-- Grid Column and Row Sizes -->
+        <!--Column Widths-->
+        <XAMLPresentation:GridLength x:Key="MainGridColumn0">50*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridColumn1">46*</XAMLPresentation:GridLength>
+
+        <!-- Row Heights-->
+        <!--<XAMLPresentation:GridLength x:Key="MainGridRow0">100*</XAMLPresentation:GridLength>
+        <XAMLPresentation:GridLength x:Key="MainGridRow1">0*</XAMLPresentation:GridLength>-->
+
+        <!-- Button Style -->
+        <Style TargetType="{x:Type Button}" x:Key="Button_Style" >
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True" >
+                    <Setter Property="Background" Value="#1C1D22" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True" >
+                    <Setter Property="Background" Value="#0E0E10" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <!--#endregion-->
+
+    <Grid Background="#0E0E10" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource MainGridColumn0}" />
+            <ColumnDefinition Width="{StaticResource MainGridColumn1}" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+        </Grid.RowDefinitions>
+
+
+        <!--#region Information Panel -->
+        <Grid Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="60*" />
+                <ColumnDefinition Width="20*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22*" />
+                <RowDefinition Height="16*" />
+                <RowDefinition Height="0.25*" />
+                <RowDefinition Height="16*" />
+                <RowDefinition Height="0.25*" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="11.5*" />
+                <RowDefinition Height="24*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50*" />
+                    <RowDefinition Height="50*" />
+                </Grid.RowDefinitions>
+
+                <Viewbox Grid.Row="1" >
+                    <TextBox FontFamily="Helvetica" 
+                         FontWeight="Light"
+                         Text="File Location"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Bottom"
+                         Foreground="White"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         HorizontalContentAlignment="Center"
+                         Opacity="1" 
+                         x:Name="IPBlock"
+                         GotKeyboardFocus="FileLocBlockEnter" 
+                         LostKeyboardFocus="FileLocBlockLeave" />
+                </Viewbox>
+
+            </Grid>
+
+
+            <Grid Grid.Column="1" Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50*" />
+                    <RowDefinition Height="50*" />
+                </Grid.RowDefinitions>
+
+                <Viewbox Grid.Row="1" >
+                    <TextBox FontFamily="Helvetica" 
+                         FontWeight="Light"
+                         Text="Port"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Bottom"
+                         Foreground="White"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         HorizontalContentAlignment="Center"
+                         Opacity="1" 
+                         x:Name="PortBlock"
+                         GotKeyboardFocus="RPortBlockEnter" 
+                         LostKeyboardFocus="RPortBlockLeave" />
+                </Viewbox>
+
+            </Grid>
+
+            <Rectangle Grid.Column="1" Grid.Row="2" Fill="White" />
+            <Rectangle Grid.Column="1" Grid.Row="4" Fill="White" />
+
+            <!-- Send Button -->
+            <Grid Grid.Column="1" Grid.Row="6" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="69*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="15*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="92*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="2" Grid.Row="2" Click="SendFileBttn" BorderBrush="Transparent" Style="{StaticResource Button_Style}" Cursor="Hand" >
+                    <Viewbox>
+                        <TextBlock FontFamily="Helvetica" 
+                               FontWeight="Light"
+                               Text="Start Server"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Bottom"
+                               Foreground="White"
+                               Background="Transparent"
+                               Opacity="1" />
+                    </Viewbox>
+                </Button>
+
+                <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" />
+                <Rectangle Grid.Column="1" Grid.Row="2" Fill="White" />
+                <Rectangle Grid.Column="1" Grid.Row="3" Fill="White" />
+                <Rectangle Grid.Column="2" Grid.Row="1" Fill="White" />
+                <Rectangle Grid.Column="2" Grid.Row="3" Fill="White" />
+                <Rectangle Grid.Column="3" Grid.Row="1" Fill="White" />
+                <Rectangle Grid.Column="3" Grid.Row="2" Fill="White" />
+                <Rectangle Grid.Column="3" Grid.Row="3" Fill="White" />
+            </Grid>
+        </Grid>
+        <!--#endregion-->
+        <!--#region File Panel -->
+        <Grid Grid.Column="1" >
             
+        </Grid>
     </Grid>
 </UserControl>

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//Using Class Library
+using AssistanceClasses;
+
+//Using System
+
+
 
 namespace ReceivePanel
 {
-    class ReceivePanelViewModel
+    public class ReceivePanelViewModel : BaseViewModel, IPageViewModel
     {
     }
 }

@@ -57,5 +57,15 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AssistanceClasses\AssistanceClasses.csproj">
+      <Project>{cb334b74-b952-4549-b80d-72b8f530bbfe}</Project>
+      <Name>AssistanceClasses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileShareData\FileShareData.csproj">
+      <Project>{b1dd3c4c-f321-4f7d-8bc4-8d455b9bdc35}</Project>
+      <Name>FileShareData</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
