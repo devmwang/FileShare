@@ -93,24 +93,6 @@ namespace SendPanel
                 PortBlock.Text = "Port";
             }
         }
-
-        // On IP Address Bar enter, set content to empty
-        private void BufferBlockEnter(object sender, EventArgs e)
-        {
-            if (BufferBlock.Text == "Buffer Size")
-            {
-                BufferBlock.Text = "";
-            }
-        }
-
-        // On IP Address Bar leave, set content to "IP Address"
-        private void BufferBlockLeave(object sender, EventArgs e)
-        {
-            if (BufferBlock.Text.Length == 0)
-            {
-                BufferBlock.Text = "Buffer Size";
-            }
-        }
         #endregion
 
         #region File Select
@@ -149,13 +131,7 @@ namespace SendPanel
             var SendPortData = FileShareDataModel.SendPort;
 
             FilePathListbox.Items.Clear();
-            //foreach (string filepath in FilePaths)
-            //{
-            //    FilePathListbox.Items.Add(filepath);
-            //}
             FilePathListbox.Items.Add(FilePath);
-            FilePathListbox.Items.Add(SendIPData);
-            FilePathListbox.Items.Add(SendPortData);
         }
     }
 }
