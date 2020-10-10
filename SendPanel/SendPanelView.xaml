@@ -171,7 +171,6 @@
         <!--#endregion-->        
         <!--#region File Panel -->
         <Grid Grid.Column="1" >
-            <Grid Grid.Column="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30*" />
                 <ColumnDefinition Width="40*" />
@@ -223,7 +222,6 @@
             <Viewbox Grid.Column="1" Grid.Row="2" >
                 <ListBox x:Name="FilePathListbox" Background="Transparent" Foreground="White" />
             </Viewbox>
-        </Grid>
         </Grid>
     </Grid>
 </UserControl>
